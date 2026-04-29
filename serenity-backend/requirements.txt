@@ -1,0 +1,7 @@
+flask==3.0.3
+flask-cors==4.0.1
+flask-limiter==3.7.0
+groq
+python-dotenv==1.0.1
+vaderSentiment==3.3.2
+gunicorn==22.0.0

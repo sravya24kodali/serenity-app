@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serenity — Your Mental Wellness Companion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── Disclaimer Modal ── -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <span class="modal-icon">🌿</span>
+    <h2>A safe space for you</h2>
+    <p>Serenity is an AI companion designed to offer a compassionate, non-judgmental space to talk. It can help you explore your feelings, practice mindfulness, and build coping skills.</p>
+    <p>Serenity is <strong>not</strong> a substitute for professional mental health care. If you're in crisis, please contact a crisis helpline.</p>
+    <button type="button" class="btn-primary" onclick="closeModal()">I understand — let's begin</button>
+    <button type="button" class="btn-secondary" onclick="window.open('https://988lifeline.org','_blank')">988 Crisis resources</button>
+    <p class="disclaimer-note">By continuing, you agree that this is a supportive AI tool, not medical advice.</p>
+  </div>
+</div>
+
+<!-- ── App Shell ── -->
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon">🌿</div>
+        <div>
+          <div class="logo-name">Serenity</div>
+          <div class="logo-tagline">MENTAL WELLNESS COMPANION</div>
+        </div>
+      </div>
+      <button type="button" class="new-chat-btn" onclick="newChat()">+ New conversation</button>
+    </div>
+
+    <div class="sidebar-mood">
+      <div class="mood-label">HOW ARE YOU FEELING?</div>
+      <div class="mood-row">
+        <button type="button" class="mood-btn" onclick="selectMood(this,'😢','very sad')"  title="Very sad">😢</button>
+        <button type="button" class="mood-btn" onclick="selectMood(this,'😞','sad')"       title="Sad">😞</button>
+        <button type="button" class="mood-btn" onclick="selectMood(this,'😐','okay')"      title="Okay">😐</button>
+        <button type="button" class="mood-btn" onclick="selectMood(this,'🙂','good')"      title="Good">🙂</button>
+        <button type="button" class="mood-btn" onclick="selectMood(this,'😊','great')"     title="Great">😊</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="section-label">RECENT CONVERSATIONS</div>
+      <div class="history-list" id="historyList"></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button type="button" class="footer-btn" onclick="showCrisisResources()">🔗 Mental health resources</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CHAT -->
+  <main class="chat">
+    <div class="chat-header">
+      <div class="header-left">
+        <h1>Your safe space</h1>
+        <p>Confidential · Non-judgmental · Always here</p>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="action-btn" onclick="startBreathing()" title="Breathing exercise">🫁</button>
+        <button type="button" class="action-btn" onclick="openProfileSettings()" title="Settings">⚙️</button>
+      </div>
+    </div>
+
+    <!-- Crisis banner -->
+    <div class="crisis-banner hidden" id="crisisBanner">
+      <span>🚨 <strong>988 Suicide &amp; Crisis Lifeline</strong> — call or text 988</span>
+      <a class="crisis-link" href="https://988lifeline.org" target="_blank">Get help</a>
+    </div>
+
+    <!-- Messages area -->
+    <div class="messages" id="messages">
+      <div class="welcome" id="welcomeScreen">
+        <div class="welcome-orb">🌿</div>
+        <div class="welcome-text">
+          <h2>Hello, I'm here for you</h2>
+          <p>This is a gentle space to share what's on your mind. There's no judgment here — only care, curiosity, and compassion.</p>
+        </div>
+        <div class="quick-prompts">
+          <button type="button" class="quick-prompt" onclick="sendQuick(this)">
+            <span class="prompt-icon">😔</span>
+            <span class="prompt-text">I've been feeling anxious lately</span>
+          </button>
+          <button type="button" class="quick-prompt" onclick="sendQuick(this)">
+            <span class="prompt-icon">💭</span>
+            <span class="prompt-text">I need someone to talk to</span>
+          </button>
+          <button type="button" class="quick-prompt" onclick="sendQuick(this)">
+            <span class="prompt-icon">🧘</span>
+            <span class="prompt-text">Help me practice mindfulness</span>
+          </button>
+          <button type="button" class="quick-prompt" onclick="sendQuick(this)">
+            <span class="prompt-icon">😴</span>
+            <span class="prompt-text">I've been struggling to sleep</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input area -->
+    <div class="input-area">
+      <div class="input-wrapper">
+        <textarea
+          id="msgInput"
+          placeholder="Share what's on your mind…"
+          rows="1"
+          onkeydown="handleKey(event)"
+          oninput="autoResize(this)"
+        ></textarea>
+        <div class="input-actions">
+          <button type="button" class="send-btn" id="sendBtn" onclick="sendMessage()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="input-hint">
+        Serenity is an AI and cannot replace professional help ·
+        <a href="https://988lifeline.org" target="_blank">Crisis resources</a>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

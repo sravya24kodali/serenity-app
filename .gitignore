@@ -1,0 +1,6 @@
+serenity-backend/.env
+serenity-backend/__pycache__/
+serenity-backend/**/__pycache__/
+serenity-backend/*.pyc
+serenity-backend/database/conversations_db.json
+.DS_Store
