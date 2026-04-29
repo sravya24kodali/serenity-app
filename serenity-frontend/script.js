@@ -2,7 +2,7 @@
 //  Serenity — script.js  (FINAL WORKING VERSION)
 // =====================================================
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://serenity-app-n0r0.onrender.com/api';
 
 let currentUser         = null;
 let currentConvId       = null;
