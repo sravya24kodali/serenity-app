@@ -22,7 +22,7 @@ from database.conversations import (
 PERSONALIZATION_ENGINE = PersonalizationEngine()
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-chat_bp = Blueprint('chat', __name__, url_prefix='/api')
+chat_bp = Blueprint('chat', __name__)
 
 
 # ── POST /api/chat ───────────────────────────────────
