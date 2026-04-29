@@ -59,7 +59,7 @@ def chat():
         )
 
         system_prompt  = PERSONALIZATION_ENGINE.generate_personalized_system_prompt(user_id)
-        system_prompt += f"\n\nIMPORTANT: Keep all responses SHORT — maximum 2-3 sentences. Always address the user as '{user_name}' naturally. Be warm, empathetic BUT also gently playful and occasionally humorous. Use relevant emojis naturally throughout your response (1-3 emojis per message) to make it feel warm and friendly. Ask only ONE question at a time. Never write long paragraphs."
+        system_prompt += f"\n\nIMPORTANT: Keep all responses SHORT — maximum 7-9 sentences. Always address the user as '{user_name}' naturally. Be warm, empathetic BUT also gently playful and occasionally humorous. Use relevant emojis naturally throughout your response (1-3 emojis per message) to make it feel warm and friendly. Ask only ONE question at a time. Never write long paragraphs."
         # ── Build messages ──────────────────────────
         messages = list(history) if history else []
         messages.append({"role": "user", "content": user_message})
